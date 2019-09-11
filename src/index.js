@@ -43,10 +43,18 @@ function showSlide(slideData) {
 
       el.selectAll('code')
         .call((codeSelection) => {
-          console.log(codeSelection);
           codeSelection.each(function () {
             hljs.highlightBlock(this);
           });
+        })
+        .on('click', async (d, i, els) => {
+          await navigator.clipboard.writeText(els[0].innerText);
+          d3.select('#message')
+            .text('Copied to clipboard!')
+            .style('opacity', 1)
+            .transition()
+            .delay(600)
+            .style('opacity', 0);
         });
     })
     .transition()
@@ -107,11 +115,15 @@ function initPresentationHtml(html) {
   bubbles.enter()
     .append('circle')
     .attr('r', (d) => bubbleSize(d.html.length))
-    .attr('cx', (d, i) => timelinePosition(i))
     .attr('fill', '#ccf')
     .attr('stroke-width', 3)
     .attr('stroke', (d) => (d.html.includes('<h1') ? '#f55' : '#55f'))
-    .on('click', (d) => showSlide(d));
+    .on('click', (d) => showSlide(d))
+    .transition()
+    .duration(1000)
+    .delay((d, i) => i * 50)
+    .ease(d3.easeBackInOut)
+    .attr('cx', (d, i) => timelinePosition(i));
 
 
   showSlide(slides[0]);
