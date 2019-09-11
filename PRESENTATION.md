@@ -11,16 +11,16 @@ Khôi Tran tran@puzzle.ch
 
 Presentation:
 
-https://github.com/puzzle/techworkshop-d3
+`git clone https://github.com/puzzle/techworkshop-d3`
 
-`npm start`
+`npm i && npm start`
 
 
 D3.js sandbox:
 
-https://github.com/keetraxx/d3-sandbox
+`git clone https://github.com/keetraxx/d3-sandbox`
 
-`npm start`
+`npm i && npm start`
 
 ---
 
