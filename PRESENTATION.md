@@ -133,6 +133,25 @@ list.exit()
 
 ---
 
+## Eventhandlers
+
+D3.js has wrapped binding of eventhandlers on DOM elements.
+
+```javascript
+var data = [{name: 'Anna'}, {name: 'Ben'}, {name: 'Christoph'}];
+
+var list = d3.select('aside')
+  .selectAll('p')
+  .data(data);
+
+list.enter()
+  .append('p')
+  .text(d => d.name)
+  .on('click', d => console.log(d)); // => {name: "Anna"} 
+```
+
+---
+
 ## Transitions
 
 ```javascript
